@@ -1,0 +1,94 @@
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --font-main: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-main);
+
+  background-image:
+    linear-gradient(rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.85)),
+    url("./assets/images/app-background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+
+  /* 3. Dark Fallback Color while image loads */
+  background-color: #0f172a;
+  color: #ffffff;
+}
+
+body:not(.dark) {
+  background-image:
+    linear-gradient(rgba(241, 245, 249, 0.1), rgba(203, 213, 225, 0.05)),
+    url("./assets/images/app-background.jpg");
+
+  background-color: #f1f5f9;
+  color: #111827;
+}
+
+/* glass effect for dark mode */
+@utility glass {
+  @apply bg-white/10 
+         backdrop-blur-md 
+         backdrop-saturate-150
+         border border-white/20 
+         shadow-[0_8px_32px_0_rgba(0,0,0,0.12)];
+}
+
+@utility glass-hover {
+  @apply transition-all duration-300 
+         hover:bg-white/15 
+         hover:border-white/30 
+         active:scale-[0.98];
+}
+
+/* glass effect for light mode */
+@utility glass-light {
+  @apply bg-white/60
+         backdrop-blur-lg
+         backdrop-saturate-150
+         border border-white/80
+         shadow-[0_8px_32px_0_rgba(31,38,135,0.08)];
+}
+@utility glass-light-hover {
+  @apply transition-all duration-300 
+         hover:bg-white/80 
+         hover:border-white 
+         hover:shadow-[0_12px_40px_0_rgba(31,38,135,0.12)] 
+         active:scale-[0.98];
+}
+
+/* Managing the search */
+@utility display-hidden {
+  @apply invisible
+         opacity-0
+         pointer-events-none
+         translate-y-4
+         scale-95
+        transition-all duration-200 ease-in-out;
+}
+@utility display-initial {
+  @apply visible
+         opacity-100
+         pointer-events-auto
+         transition-all duration-200 ease-in-out
+         translate-y-0
+         scale-100
+
+}
+
+@layer base {
+  button,
+  input,
+  label {
+    @apply cursor-pointer;
+  }
+}
