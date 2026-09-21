@@ -81,8 +81,7 @@ body:not(.dark) {
          pointer-events-auto
          transition-all duration-200 ease-in-out
          translate-y-0
-         scale-100
-
+         scale-100;
 }
 
 @layer base {
@@ -90,5 +89,14 @@ body:not(.dark) {
   input,
   label {
     @apply cursor-pointer;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply m-0
+          p-0;
   }
 }

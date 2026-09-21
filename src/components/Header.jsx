@@ -61,12 +61,12 @@ export const Header = () => {
 
         {/* Search Modal Container */}
         <div
-          className={`h-fit fixed top-16 left-0 right-0 flex flex-col items-center justify-center z-50 ${
+          className={`h-fit fixed top-16 left-0 gap-0 right-0 flex flex-col items-center justify-center z-50  ${
             isSearchbarOpen ? "display-initial" : "display-hidden"
           }`}
         >
           {/* Search Bar Input */}
-          <div className="flex items-center gap-4 w-[90%] sm:w-[80%] max-w-[700px]  rounded-t-lg dark:glass glass-light py-4 px-4 border-b-0">
+          <div className="flex items-center gap-4 w-[90%] sm:w-[80%] max-w-[700px]  rounded-t-lg dark:glass glass-light py-4 px-4 border-b-0 dark:bg-black/30">
             <img
               src={searchIcon}
               width={18}
@@ -95,14 +95,14 @@ export const Header = () => {
           </div>
 
           {/* Search Dropdown Results */}
-          <div className="dark:glass glass-light h-fit w-[80%] max-w-[700px] rounded-b-lg border border-t-1 border-gray-400/50 cursor-pointer max-h-60 overflow-y-auto w-[90%] sm:w-[80%]">
-            <p className="flex items-center py-4 px-4 border-b-[0.5px] dark:border-gray-600 dark:hover:bg-white/5 border-gray-200 hover:bg-black/5 transition-all dark:text-white text-slate-800">
+          <div className="dark:glass glass-light h-fit w-[88%] max-w-[700px] rounded-b-lg border border-t-1 border-gray-400/50 cursor-pointer max-h-60 overflow-y-auto w-[90%] sm:w-[80%] dark:bg-black/30">
+            <p className="flex items-center py-4 px-4 border-b-[0.5px] dark:border-gray-600 dark:hover:bg-white/5 border-gray-300 hover:bg-black/5 transition-all dark:text-white text-slate-800">
               Morocco
             </p>
-            <p className="flex items-center py-4 px-4 border-b-[0.5px] dark:border-gray-600 dark:hover:bg-white/5 border-gray-200 hover:bg-black/5 transition-all dark:text-white text-slate-800">
+            <p className="flex items-center py-4 px-4 border-b-[0.5px] dark:border-gray-600 dark:hover:bg-white/5 border-gray-300 hover:bg-black/5 transition-all dark:text-white text-slate-800">
               Spain
             </p>
-            <p className="flex items-center py-4 px-4 border-b-[0.5px] dark:border-gray-600 dark:hover:bg-white/5 border-gray-200 hover:bg-black/5 transition-all dark:text-white text-slate-800">
+            <p className="flex items-center py-4 px-4 border-b-[0.5px] dark:border-gray-600 dark:hover:bg-white/5 border-gray-300 hover:bg-black/5 transition-all dark:text-white text-slate-800">
               United Kingdom
             </p>
           </div>
