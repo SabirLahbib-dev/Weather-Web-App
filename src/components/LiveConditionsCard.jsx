@@ -14,7 +14,7 @@ const mockData = [
 
 export function LiveConditionsCard() {
   return (
-    <section className="dark:glass glass-light p-5 rounded-2xl flex-1 flex flex-col gap-4 mx-2 min-w-0 w-full">
+    <section className="dark:glass glass-light min-w-0 w-full rounded-lg p-4 sm:p-5 flex flex-col gap-4">
       
       {/* Header Info */}
       <div className="flex justify-between items-center">

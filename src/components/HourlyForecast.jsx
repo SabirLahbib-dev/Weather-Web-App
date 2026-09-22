@@ -1,126 +1,39 @@
+import cloudIcon from "../assets/icons/cloud.svg";
+
+const hourlyForecast = [
+  { time: "Now", temperature: "18°" },
+  { time: "2PM", temperature: "19°" },
+  { time: "3PM", temperature: "19°" },
+  { time: "4PM", temperature: "20°" },
+  { time: "5PM", temperature: "20°" },
+  { time: "6PM", temperature: "19°" },
+  { time: "7PM", temperature: "18°" },
+  { time: "8PM", temperature: "17°" },
+  { time: "9PM", temperature: "16°" },
+  { time: "10PM", temperature: "16°" },
+  { time: "11PM", temperature: "15°" },
+];
+
 export const HourlyForecast = () => {
   return (
-    <section className="flex flex-row items-center gap-3 dark:glass glass-light m-2 rounded-lg p-3 overflow-x-auto scrollbar-none">
-      {/* weather in every hour */}
-      <div className="flex gap-2 flex-col items-center justify-center dark:bg-black/20 bg-white/30 p-2 rounded-md">
-        <p>Now</p>
-        <img
-          src="/src/assets/icons/cloud.svg"
-          alt="Current weather icon"
-          width={20}
-          className="dark:invert"
-        />
-        <p>18°</p>
-      </div>
-      {/* weather in every hour */}
-      <div className="flex gap-2 flex-col items-center justify-center dark:bg-black/20 bg-white/30  p-2 rounded-md">
-        <p>2PM</p>
-        <img
-          src="/src/assets/icons/cloud.svg"
-          alt="Current weather icon"
-          width={20}
-          className="dark:invert"
-        />
-        <p>19°</p>
-      </div>
-      {/* weather in every hour */}
-      <div className="flex gap-2 flex-col items-center justify-center dark:bg-black/20 bg-white/30  p-2 rounded-md">
-        <p>2PM</p>
-        <img
-          src="/src/assets/icons/cloud.svg"
-          alt="Current weather icon"
-          width={20}
-          className="dark:invert"
-        />
-        <p>19°</p>
-      </div>
-      {/* weather in every hour */}
-      <div className="flex gap-2 flex-col items-center justify-center dark:bg-black/20 bg-white/30  p-2 rounded-md">
-        <p>2PM</p>
-        <img
-          src="/src/assets/icons/cloud.svg"
-          alt="Current weather icon"
-          width={20}
-          className="dark:invert"
-        />
-        <p>19°</p>
-      </div>
-      {/* weather in every hour */}
-      <div className="flex gap-2 flex-col items-center justify-center dark:bg-black/20 bg-white/30  p-2 rounded-md">
-        <p>2PM</p>
-        <img
-          src="/src/assets/icons/cloud.svg"
-          alt="Current weather icon"
-          width={20}
-          className="dark:invert"
-        />
-        <p>19°</p>
-      </div>
-      {/* weather in every hour */}
-      <div className="flex gap-2 flex-col items-center justify-center dark:bg-black/20 bg-white/30  p-2 rounded-md">
-        <p>2PM</p>
-        <img
-          src="/src/assets/icons/cloud.svg"
-          alt="Current weather icon"
-          width={20}
-          className="dark:invert"
-        />
-        <p>19°</p>
-      </div>
-      {/* weather in every hour */}
-      <div className="flex gap-2 flex-col items-center justify-center dark:bg-black/20 bg-white/30  p-2 rounded-md">
-        <p>2PM</p>
-        <img
-          src="/src/assets/icons/cloud.svg"
-          alt="Current weather icon"
-          width={20}
-          className="dark:invert"
-        />
-        <p>19°</p>
-      </div>
-      {/* weather in every hour */}
-      <div className="flex gap-2 flex-col items-center justify-center dark:bg-black/20 bg-white/30  p-2 rounded-md">
-        <p>2PM</p>
-        <img
-          src="/src/assets/icons/cloud.svg"
-          alt="Current weather icon"
-          width={20}
-          className="dark:invert"
-        />
-        <p>19°</p>
-      </div>
-      {/* weather in every hour */}
-      <div className="flex gap-2 flex-col items-center justify-center dark:bg-black/20 bg-white/30  p-2 rounded-md">
-        <p>2PM</p>
-        <img
-          src="/src/assets/icons/cloud.svg"
-          alt="Current weather icon"
-          width={20}
-          className="dark:invert"
-        />
-        <p>19°</p>
-      </div>
-      {/* weather in every hour */}
-      <div className="flex gap-2 flex-col items-center justify-center dark:bg-black/20 bg-white/30  p-2 rounded-md">
-        <p>2PM</p>
-        <img
-          src="/src/assets/icons/cloud.svg"
-          alt="Current weather icon"
-          width={20}
-          className="dark:invert"
-        />
-        <p>19°</p>
-      </div>
-      {/* weather in every hour */}
-      <div className="flex gap-2 flex-col items-center justify-center dark:bg-black/20 bg-white/30  p-2 rounded-md">
-        <p>2PM</p>
-        <img
-          src="/src/assets/icons/cloud.svg"
-          alt="Current weather icon"
-          width={20}
-          className="dark:invert"
-        />
-        <p>19°</p>
+    <section className="dark:glass glass-light m-0 min-w-0 overflow-x-auto rounded-lg p-3 scrollbar-none">
+      <div className="flex min-w-max items-center gap-3">
+        {hourlyForecast.map(({ time, temperature }) => (
+          <div
+            className="flex w-14 shrink-0 flex-col items-center justify-center gap-2 rounded-md bg-white/30 p-2 dark:bg-black/20"
+            key={time}
+          >
+            <p className="whitespace-nowrap">{time}</p>
+            <img
+              src={cloudIcon}
+              alt="Cloudy weather"
+              width={20}
+              height={20}
+              className="shrink-0 dark:invert"
+            />
+            <p>{temperature}</p>
+          </div>
+        ))}
       </div>
     </section>
   );

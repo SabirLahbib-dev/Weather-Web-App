@@ -9,16 +9,16 @@ function App() {
   return (
     <>
       <Header />
-      <div className="min-[690px]:flex min-[690px]:items-center min-[690px]:justify-center flex flex-col w-full max-w-6xl max-auto min-[690px]min-w-0 min-w-0">
-        <div>
+      <main className="mx-auto flex w-full max-w-3xl min-w-0 flex-col items-center gap-4 px-2 pb-4 sm:px-4 lg:max-w-6xl lg:flex-row lg:items-start lg:px-6">
+        <div className="flex min-w-0 w-full flex-col gap-2 lg:w-2/3">
           <HeroWeatherCard />
           <HourlyForecast />
           <WeeklyForecast />
         </div>
-        <div>
+        <div className="min-w-0 w-full lg:w-1/3">
           <LiveConditionsCard />
         </div>
-      </div>
+      </main>
     </>
   );
 }

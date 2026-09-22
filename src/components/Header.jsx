@@ -16,18 +16,18 @@ export const Header = () => {
     <>
       <header className="flex items-center justify-between py-3 px-3 sm:px-6 relative z-50">
         {/* Location Header */}
-        <div className="flex gap-2 items-center min-w-0 shrink-0 truncate">
+        <div className="flex min-w-0 flex-1 items-center gap-2">
           <img
             src={locationIcon}
             width={25}
             alt="location"
-            className="dark:invert-0 invert transition-all"
+            className="shrink-0 dark:invert-0 invert transition-all"
           />
-          <div>
-            <p className="dark:text-white font-semibold text-black text-[clamp(14px,2vw,16px)]">
+          <div className="min-w-0">
+            <p className="truncate dark:text-white font-semibold text-black text-[clamp(14px,2vw,16px)]">
               Brooklyn, New York, USA
             </p>
-            <p className="dark:text-gray-400 text-gray-700 font-medium text-[clamp(12px,1.5vw,14px)]">
+            <p className="truncate dark:text-gray-400 text-gray-700 font-medium text-[clamp(12px,1.5vw,14px)]">
               Friday, January 4
             </p>
           </div>
@@ -66,7 +66,7 @@ export const Header = () => {
           }`}
         >
           {/* Search Bar Input */}
-          <div className="flex items-center gap-4 w-[90%] sm:w-[80%] max-w-[700px]  rounded-t-lg dark:glass glass-light py-4 px-4 border-b-0 dark:bg-black/30">
+          <div className="flex min-w-0 items-center gap-3 w-[90%] max-w-[700px] rounded-t-lg dark:glass glass-light py-4 px-3 sm:w-[80%] sm:gap-4 sm:px-4 border-b-0 dark:bg-black/30">
             <img
               src={searchIcon}
               width={18}
@@ -85,7 +85,7 @@ export const Header = () => {
               }}
             />
             <button
-              className="border dark:border-white/10 border-gray-400 px-1 rounded-md pb-1 px-2"
+              className="shrink-0 rounded-md border px-2 pb-1 dark:border-white/10 border-gray-400"
               onClick={() => {
                 setIsSearchbarOpen(false);
               }}
@@ -95,7 +95,7 @@ export const Header = () => {
           </div>
 
           {/* Search Dropdown Results */}
-          <div className="dark:glass glass-light h-fit w-[88%] max-w-[700px] rounded-b-lg border border-t-1 border-gray-400/50 cursor-pointer max-h-60 overflow-y-auto w-[90%] sm:w-[80%] dark:bg-black/30">
+          <div className="dark:glass glass-light h-fit w-[90%] max-w-[700px] rounded-b-lg border border-t-1 border-gray-400/50 cursor-pointer max-h-60 overflow-y-auto sm:w-[80%] dark:bg-black/30">
             <p className="flex items-center py-4 px-4 border-b-[0.5px] dark:border-gray-600 dark:hover:bg-white/5 border-gray-300 hover:bg-black/5 transition-all dark:text-white text-slate-800">
               Morocco
             </p>
