@@ -14,9 +14,9 @@ export const Header = () => {
 
   return (
     <>
-      <header className="flex items-center justify-between py-3 px-6 relative z-50">
+      <header className="flex items-center justify-between py-3 px-3 sm:px-6 relative z-50">
         {/* Location Header */}
-        <div className="flex gap-2 items-center">
+        <div className="flex gap-2 items-center min-w-0 shrink-0 truncate">
           <img
             src={locationIcon}
             width={25}
@@ -34,21 +34,21 @@ export const Header = () => {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 shrink-0">
           <button
-            className="dark:glass dark:glass-hover p-3 rounded-full glass-light glass-light-hover cursor-pointer"
+            className="dark:glass dark:glass-hover p-3 shrink-0 rounded-full glass-light glass-light-hover cursor-pointer size-10"
             onClick={() => setIsSearchbarOpen(true)}
           >
             <img
               src={searchIcon}
               width={15}
               alt="search"
-              className="dark:invert transition-all"
+              className="dark:invert shrink-0 w-4 h-4"
             />
           </button>
 
           <button
-            className="transition-all flex items-center justify-center dark:glass dark:glass-hover p-[9px] rounded-full glass-light glass-light-hover cursor-pointer"
+            className="transition-all flex items-center justify-center dark:glass dark:glass-hover p-[9px] rounded-full glass-light glass-light-hover cursor-pointer shrink-0 size-10"
             onClick={() => setIsDarkMode((current) => !current)}
           >
             <img
@@ -61,7 +61,7 @@ export const Header = () => {
 
         {/* Search Modal Container */}
         <div
-          className={`h-fit fixed top-16 left-0 gap-0 right-0 flex flex-col items-center justify-center z-50  ${
+          className={`h-fit fixed top-16 left-0 gap-0 right-0 flex flex-col items-center justify-center shrink-0 z-50  ${
             isSearchbarOpen ? "display-initial" : "display-hidden"
           }`}
         >
@@ -71,13 +71,13 @@ export const Header = () => {
               src={searchIcon}
               width={18}
               alt="search icon"
-              className="dark:invert invert-0"
+              className="dark:invert invert-0 shrink-0"
             />
             <input
               type="text"
               name="countries"
               placeholder="Search country..."
-              className="outline-none h-full w-full bg-transparent dark:text-white text-slate-800 placeholder-gray-500"
+              className="outline-none h-full w-full bg-transparent dark:text-white text-slate-800 placeholder-gray-500 min-w-0"
               onKeyDown={(e) => {
                 if (e.key === "Escape") {
                   setIsSearchbarOpen(false);
