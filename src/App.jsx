@@ -3,6 +3,7 @@ import { HeroWeatherCard } from "./components/HeroWeatherCard";
 import { HourlyForecast } from "./components/HourlyForecast";
 import { WeeklyForecast } from "./components/WeeklyForecast";
 import { LiveConditionsCard } from "./components/LiveConditionsCard";
+import { WindMapCard } from "./components/WindMapCard";
 import "./App.css";
 
 function App() {
@@ -15,8 +16,9 @@ function App() {
           <HourlyForecast />
           <WeeklyForecast />
         </div>
-        <div className="min-w-0 w-full lg:w-1/3">
+        <div className="flex flex-col gap-2 min-w-0 w-full  lg:w-1/3">
           <LiveConditionsCard />
+          <WindMapCard />
         </div>
       </main>
     </>

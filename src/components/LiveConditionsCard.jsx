@@ -34,7 +34,7 @@ export function LiveConditionsCard() {
       </div>
 
       {/* 2. Smooth Recharts Area Graph */}
-      <div className="w-full h-28 my-1">
+      <div className="w-full h-18 my-1">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={mockData}>
             <defs>
