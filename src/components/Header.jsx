@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 import locationIcon from "../assets/icons/location-icon.png";
 import searchIcon from "../assets/icons/search-icon.png";
 import nightModeIcon from "../assets/icons/night-mode.svg";
@@ -8,9 +9,37 @@ export const Header = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [isSearchbarOpen, setIsSearchbarOpen] = useState(false);
 
+  // search
+  const [search, setSearch] = useState("");
+
+  // location suggestions for the user while typing
+  const [suggestions, setSuggestions] = useState([]);
+
+  // managing dark/light mode
   useEffect(() => {
     document.body.classList.toggle("dark", isDarkMode);
   }, [isDarkMode]);
+
+  // load suggestions
+  useEffect(() => {
+    const timer = setTimeout(async () => {
+      if (!search.trim()) {
+        setSuggestions([]);
+        return;
+      }
+
+      try {
+        const res = await axios.get(
+          `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(search)}&count=5&language=en&format=json`,
+        );
+        setSuggestions(res.data);
+      } catch (err) {
+        console.error("Geocoding error:", err);
+      }
+    }, 300); // Wait 300ms after user stops typing
+
+    return () => clearTimeout(timer); // Cleanup
+  }, [search]);
 
   return (
     <>
@@ -66,7 +95,9 @@ export const Header = () => {
           }`}
         >
           {/* Search Bar Input */}
-          <div className="flex min-w-0 items-center gap-3 w-[90%] max-w-[700px] rounded-t-lg dark:glass glass-light py-4 px-3 sm:w-[80%] sm:gap-4 sm:px-4 border-b-0 dark:bg-black/30">
+          <div
+            className={`flex min-w-0 items-center gap-3 w-[90%] max-w-[700px] rounded-t-lg dark:glass glass-light py-4 px-3 sm:w-[80%] sm:gap-4 sm:px-4 border-b-0 dark:bg-black/30 ${!suggestions.results && "rounded-b-lg"}`}
+          >
             <img
               src={searchIcon}
               width={18}
@@ -76,6 +107,10 @@ export const Header = () => {
             <input
               type="text"
               name="countries"
+              value={search}
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
               placeholder="Search country..."
               className="outline-none h-full w-full bg-transparent dark:text-white text-slate-800 placeholder-gray-500 min-w-0"
               onKeyDown={(e) => {
@@ -95,17 +130,24 @@ export const Header = () => {
           </div>
 
           {/* Search Dropdown Results */}
-          <div className="dark:glass glass-light h-fit w-[90%] max-w-[700px] rounded-b-lg border border-t-1 border-gray-400/50 cursor-pointer max-h-60 overflow-y-auto sm:w-[80%] dark:bg-black/30">
-            <p className="flex items-center py-4 px-4 border-b-[0.5px] dark:border-gray-600 dark:hover:bg-white/5 border-gray-300 hover:bg-black/5 transition-all dark:text-white text-slate-800">
-              Morocco
-            </p>
-            <p className="flex items-center py-4 px-4 border-b-[0.5px] dark:border-gray-600 dark:hover:bg-white/5 border-gray-300 hover:bg-black/5 transition-all dark:text-white text-slate-800">
-              Spain
-            </p>
-            <p className="flex items-center py-4 px-4 border-b-[0.5px] dark:border-gray-600 dark:hover:bg-white/5 border-gray-300 hover:bg-black/5 transition-all dark:text-white text-slate-800">
-              United Kingdom
-            </p>
-          </div>
+          {suggestions.results ? (
+            <div className="dark:glass glass-light w-[90%] max-w-[700px] rounded-b-lg border border-t-1 border-gray-400/50 cursor-pointer max-h-60 overflow-y-auto scrollbar-none sm:w-[80%] dark:bg-black/30">
+              {suggestions.results.map((sug) => {
+                return (
+                  <div
+                    key={sug.id}
+                    className="flex justify-between items-center py-4 px-4 border-b-[0.5px] dark:border-gray-600 dark:hover:bg-white/5 border-gray-300 hover:bg-black/5 transition-all dark:text-white text-slate-800"
+                  >
+                    <div>
+                      <p>{sug.name}</p>
+                      <p className="text-sm text-slate-400">{sug.country}</p>
+                    </div>
+                    <p>{sug.admin1}</p>
+                  </div>
+                );
+              })}
+            </div>
+          ) : null}
         </div>
       </header>
     </>
