@@ -42,8 +42,7 @@ export const Header = ({ setLocation, location }) => {
     return () => clearTimeout(timer); // Cleanup
   }, [search]);
 
-  
-
+  console.log(location);
   return (
     <>
       <header className="flex items-center justify-between py-3 px-3 sm:px-6 relative z-50">
@@ -57,10 +56,15 @@ export const Header = ({ setLocation, location }) => {
           />
           <div className="min-w-0">
             <p className="truncate dark:text-white font-semibold text-black text-[clamp(14px,2vw,20px)]">
-              {location.name} • {location.admin1}
+              {location.name}{" "}
+              {location?.admin1
+                ? ` • ${location.admin1}`
+                : location?.timezone
+                  ? ` • ${location.timezone}`
+                  : ""}
             </p>
             <p className="truncate dark:text-gray-400 text-gray-700 font-medium text-[clamp(12px,1.5vw,14px)]">
-              {dayjs().format('dddd, MMMM DD')}
+              {dayjs().format("dddd, MMMM DD")}
             </p>
           </div>
         </div>

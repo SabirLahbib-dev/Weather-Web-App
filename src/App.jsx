@@ -9,6 +9,9 @@ import { WindMapCard } from "./components/WindMapCard";
 import "./App.css";
 
 function App() {
+  // is loading state
+  const [isLoading, setIsLoading] = useState(true);
+
   // state for location
   const [location, setLocation] = useState(() => {
     return (
@@ -51,10 +54,11 @@ function App() {
     const loadWeatherData = async () => {
       try {
         const res = await axios.get(
-          `https://api.open-meteo.com/v1/forecast?latitude=${location.latitude}&longitude=${location.longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m&hourly=temperature_2m,wind_speed_10m,wind_gusts_10m&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto`,
+          `https://api.open-meteo.com/v1/forecast?latitude=${location.latitude}&longitude=${location.longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,weather_code,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m&hourly=temperature_2m,wind_speed_10m,wind_gusts_10m&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto`,
         );
 
         setCurrentLocationData(res.data);
+        setIsLoading(false);
       } catch (err) {
         console.error("Fetch weather error:", err);
       }
@@ -72,15 +76,12 @@ function App() {
     return () => clearInterval(timer);
   }, [location]);
 
-  console.log(location);
-  console.log(currentLocationData);
-
   return (
     <>
       <Header location={location} setLocation={setLocation} />
       <main className="mx-auto flex w-full max-w-3xl min-w-0 flex-col items-center gap-4 px-2 pb-4 sm:px-4 lg:max-w-6xl lg:flex-row lg:items-start lg:px-6">
         <div className="flex min-w-0 w-full flex-col gap-2 lg:w-2/3">
-          <HeroWeatherCard />
+          <HeroWeatherCard currentLocationData={currentLocationData} isLoading={isLoading} />
           <HourlyForecast />
           <WeeklyForecast />
         </div>
