@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import dayjs from "dayjs";
 import locationIcon from "../assets/icons/location-icon.png";
 import searchIcon from "../assets/icons/search-icon.png";
 import nightModeIcon from "../assets/icons/night-mode.svg";
 import lightModeIcon from "../assets/icons/light-mode.svg";
 
-export const Header = () => {
+export const Header = ({ setLocation, location }) => {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [isSearchbarOpen, setIsSearchbarOpen] = useState(false);
 
@@ -41,6 +42,8 @@ export const Header = () => {
     return () => clearTimeout(timer); // Cleanup
   }, [search]);
 
+  
+
   return (
     <>
       <header className="flex items-center justify-between py-3 px-3 sm:px-6 relative z-50">
@@ -53,11 +56,11 @@ export const Header = () => {
             className="shrink-0 dark:invert-0 invert transition-all"
           />
           <div className="min-w-0">
-            <p className="truncate dark:text-white font-semibold text-black text-[clamp(14px,2vw,16px)]">
-              Brooklyn, New York, USA
+            <p className="truncate dark:text-white font-semibold text-black text-[clamp(14px,2vw,20px)]">
+              {location.name} • {location.admin1}
             </p>
             <p className="truncate dark:text-gray-400 text-gray-700 font-medium text-[clamp(12px,1.5vw,14px)]">
-              Friday, January 4
+              {dayjs().format('dddd, MMMM DD')}
             </p>
           </div>
         </div>
@@ -120,7 +123,7 @@ export const Header = () => {
               }}
             />
             <button
-              className="shrink-0 rounded-md border px-2 pb-1 dark:border-white/10 border-gray-400"
+              className="shrink-0 rounded-md border px-2 text-sm text-center dark:border-white/10 border-gray-400"
               onClick={() => {
                 setIsSearchbarOpen(false);
               }}
@@ -136,13 +139,18 @@ export const Header = () => {
                 return (
                   <div
                     key={sug.id}
+                    onClick={() => {
+                      setLocation(sug);
+                      setSearch("");
+                      setIsSearchbarOpen(false);
+                    }}
                     className="flex justify-between items-center py-4 px-4 border-b-[0.5px] dark:border-gray-600 dark:hover:bg-white/5 border-gray-300 hover:bg-black/5 transition-all dark:text-white text-slate-800"
                   >
                     <div>
                       <p>{sug.name}</p>
                       <p className="text-sm text-slate-400">{sug.country}</p>
                     </div>
-                    <p>{sug.admin1}</p>
+                    <p>{sug.admin1 ? sug.admin1 : sug.timezone}</p>
                   </div>
                 );
               })}
