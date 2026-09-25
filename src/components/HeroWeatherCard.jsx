@@ -14,7 +14,7 @@ export const HeroWeatherCard = ({ currentLocationData, isLoading }) => {
       {!isLoading ? (
         <>
           <h1 className=" text-5xl sm:text-7xl">
-            {currentLocationData.current.temperature_2m}°
+            {Math.round(currentLocationData.current.temperature_2m)}°
           </h1>
           <p className="text-2xl font-semibold sm:text-[30px]">
             {conditions.main}

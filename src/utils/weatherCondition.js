@@ -117,7 +117,7 @@ export const getWeatherCondition = (code, isDay = 1) => {
         main: "Unknown",
         sub: "With variable weather",
         status: "unknown",
-        icon: "cloudy.png",
+        icon: "sun.svg",
       };
   }
 };

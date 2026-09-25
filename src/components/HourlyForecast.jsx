@@ -1,40 +1,45 @@
-import cloudIcon from "../assets/icons/cloud.svg";
+import dayjs from "dayjs";
+import { getWeatherCondition } from "../utils/weatherCondition";
 
-const hourlyForecast = [
-  { time: "Now", temperature: "18°" },
-  { time: "2PM", temperature: "19°" },
-  { time: "3PM", temperature: "19°" },
-  { time: "4PM", temperature: "20°" },
-  { time: "5PM", temperature: "20°" },
-  { time: "6PM", temperature: "19°" },
-  { time: "7PM", temperature: "18°" },
-  { time: "8PM", temperature: "17°" },
-  { time: "9PM", temperature: "16°" },
-  { time: "10PM", temperature: "16°" },
-  { time: "11PM", temperature: "15°" },
-];
+const icons = import.meta.glob("../assets/icons/*.svg", {
+  eager: true,
+  query: "?url",
+  import: "default",
+});
 
-export const HourlyForecast = () => {
+export const HourlyForecast = ({ currentLocationData, isLoading }) => {
   return (
     <section className="dark:glass glass-light m-0 min-w-0 overflow-x-auto rounded-lg p-3 scrollbar-none">
-      <div className="flex min-w-max items-center gap-3">
-        {hourlyForecast.map(({ time, temperature }) => (
-          <div
-            className="flex w-14 shrink-0 flex-col items-center justify-center gap-2 rounded-md bg-white/30 p-2 dark:bg-black/20"
-            key={time}
-          >
-            <p className="whitespace-nowrap">{time}</p>
-            <img
-              src={cloudIcon}
-              alt="Cloudy weather"
-              width={20}
-              height={20}
-              className="shrink-0 dark:invert"
-            />
-            <p>{temperature}</p>
-          </div>
-        ))}
-      </div>
+      {!isLoading ? (
+        <div className="flex min-w-max items-center gap-3">
+          {currentLocationData.hourly.time.map((time, i) => {
+            const temperature = currentLocationData.hourly.temperature_2m[i];
+            const icon = getWeatherCondition(
+              currentLocationData.hourly.weather_code[i],
+              currentLocationData.hourly.is_day[i],
+            );
+
+            return (
+              <div
+                className="flex w-14 shrink-0 flex-col items-center justify-center gap-2 rounded-md bg-white/30 p-2 dark:bg-black/20"
+                key={i}
+              >
+                <p className="whitespace-nowrap">
+                  {i === 0 ? "Now" : dayjs(time).format("hA")}
+                </p>
+                <img
+                  src={icons[`../assets/icons/${icon.icon}`]}
+                  alt="Weather"
+                  width={20}
+                  height={20}
+                  className="shrink-0 dark:invert"
+                />
+                <p>{Math.round(temperature)}°</p>
+              </div>
+            );
+          })}
+        </div>
+      ) : null}
     </section>
   );
 };

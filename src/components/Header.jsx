@@ -42,7 +42,6 @@ export const Header = ({ setLocation, location }) => {
     return () => clearTimeout(timer); // Cleanup
   }, [search]);
 
-  console.log(location);
   return (
     <>
       <header className="flex items-center justify-between py-3 px-3 sm:px-6 relative z-50">
@@ -154,7 +153,10 @@ export const Header = ({ setLocation, location }) => {
                       <p>{sug.name}</p>
                       <p className="text-sm text-slate-400">{sug.country}</p>
                     </div>
-                    <p>{sug.admin1 ? sug.admin1 : sug.timezone}</p>
+                    <p className="text-sm">
+                      {sug.admin1 ? sug.admin1 : sug.timezone}
+                      {sug.admin2 ? ` - ${sug.admin2}` : ""}
+                    </p>
                   </div>
                 );
               })}

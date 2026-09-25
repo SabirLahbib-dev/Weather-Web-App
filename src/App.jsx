@@ -54,7 +54,7 @@ function App() {
     const loadWeatherData = async () => {
       try {
         const res = await axios.get(
-          `https://api.open-meteo.com/v1/forecast?latitude=${location.latitude}&longitude=${location.longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,weather_code,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m&hourly=temperature_2m,wind_speed_10m,wind_gusts_10m&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto`,
+          `https://api.open-meteo.com/v1/forecast?latitude=${location.latitude}&longitude=${location.longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,weather_code,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m&hourly=temperature_2m,weather_code,is_day,wind_speed_10m,wind_gusts_10m&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto&forecast_hours=24`,
         );
 
         setCurrentLocationData(res.data);
@@ -81,8 +81,14 @@ function App() {
       <Header location={location} setLocation={setLocation} />
       <main className="mx-auto flex w-full max-w-3xl min-w-0 flex-col items-center gap-4 px-2 pb-4 sm:px-4 lg:max-w-6xl lg:flex-row lg:items-start lg:px-6">
         <div className="flex min-w-0 w-full flex-col gap-2 lg:w-2/3">
-          <HeroWeatherCard currentLocationData={currentLocationData} isLoading={isLoading} />
-          <HourlyForecast />
+          <HeroWeatherCard
+            currentLocationData={currentLocationData}
+            isLoading={isLoading}
+          />
+          <HourlyForecast
+            currentLocationData={currentLocationData}
+            isLoading={isLoading}
+          />
           <WeeklyForecast />
         </div>
         <div className="flex flex-col gap-2 min-w-0 w-full  lg:w-1/3">
