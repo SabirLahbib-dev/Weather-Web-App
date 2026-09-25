@@ -6,7 +6,7 @@ import searchIcon from "../assets/icons/search-icon.png";
 import nightModeIcon from "../assets/icons/night-mode.svg";
 import lightModeIcon from "../assets/icons/light-mode.svg";
 
-export const Header = ({ setLocation, location }) => {
+export const Header = ({ setLocation, location, currentLocationData }) => {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [isSearchbarOpen, setIsSearchbarOpen] = useState(false);
 
@@ -63,7 +63,9 @@ export const Header = ({ setLocation, location }) => {
                   : ""}
             </p>
             <p className="truncate dark:text-gray-400 text-gray-700 font-medium text-[clamp(12px,1.5vw,14px)]">
-              {dayjs().format("dddd, MMMM DD")}
+              {dayjs(currentLocationData?.current?.time).format(
+                "dddd, MMMM DD",
+              )}
             </p>
           </div>
         </div>
@@ -147,13 +149,13 @@ export const Header = ({ setLocation, location }) => {
                       setSearch("");
                       setIsSearchbarOpen(false);
                     }}
-                    className="flex justify-between items-center py-4 px-4 border-b-[0.5px] dark:border-gray-600 dark:hover:bg-white/5 border-gray-300 hover:bg-black/5 transition-all dark:text-white text-slate-800"
+                    className="flex justify-between items-center py-4 px-4 border-b-[0.5px] dark:border-gray-600 dark:hover:bg-white/5 border-gray-300 hover:bg-black/5 transition-all dark:text-white text-slate-800 min-w-0"
                   >
                     <div>
                       <p>{sug.name}</p>
                       <p className="text-sm text-slate-400">{sug.country}</p>
                     </div>
-                    <p className="text-sm">
+                    <p className="text-sm truncate">
                       {sug.admin1 ? sug.admin1 : sug.timezone}
                       {sug.admin2 ? ` - ${sug.admin2}` : ""}
                     </p>

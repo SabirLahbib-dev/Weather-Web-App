@@ -1,11 +1,6 @@
 import dayjs from "dayjs";
+import { icons } from "../utils/icons";
 import { getWeatherCondition } from "../utils/weatherCondition";
-
-const icons = import.meta.glob("../assets/icons/*.svg", {
-  eager: true,
-  query: "?url",
-  import: "default",
-});
 
 export const HourlyForecast = ({ currentLocationData, isLoading }) => {
   return (

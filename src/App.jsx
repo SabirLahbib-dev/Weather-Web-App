@@ -78,7 +78,11 @@ function App() {
 
   return (
     <>
-      <Header location={location} setLocation={setLocation} />
+      <Header
+        location={location}
+        setLocation={setLocation}
+        currentLocationData={currentLocationData}
+      />
       <main className="mx-auto flex w-full max-w-3xl min-w-0 flex-col items-center gap-4 px-2 pb-4 sm:px-4 lg:max-w-6xl lg:flex-row lg:items-start lg:px-6">
         <div className="flex min-w-0 w-full flex-col gap-2 lg:w-2/3">
           <HeroWeatherCard
@@ -89,7 +93,10 @@ function App() {
             currentLocationData={currentLocationData}
             isLoading={isLoading}
           />
-          <WeeklyForecast />
+          <WeeklyForecast
+            currentLocationData={currentLocationData}
+            isLoading={isLoading}
+          />
         </div>
         <div className="flex flex-col gap-2 min-w-0 w-full  lg:w-1/3">
           <LiveConditionsCard />
