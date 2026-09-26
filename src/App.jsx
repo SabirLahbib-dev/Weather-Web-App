@@ -103,7 +103,10 @@ function App() {
             currentLocationData={currentLocationData}
             isLoading={isLoading}
           />
-          <WindMapCard />
+          <WindMapCard
+            currentLocationData={currentLocationData}
+            isLoading={isLoading}
+          />
         </div>
       </main>
     </>
