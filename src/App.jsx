@@ -99,7 +99,10 @@ function App() {
           />
         </div>
         <div className="flex flex-col gap-2 min-w-0 w-full  lg:w-1/3">
-          <LiveConditionsCard />
+          <LiveConditionsCard
+            currentLocationData={currentLocationData}
+            isLoading={isLoading}
+          />
           <WindMapCard />
         </div>
       </main>
