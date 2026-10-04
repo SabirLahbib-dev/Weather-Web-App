@@ -4,7 +4,8 @@ import dayjs from "dayjs";
 export function LiveConditionsCard({ currentLocationData, isLoading }) {
   // Guard close
   if (isLoading || !currentLocationData) {
-    return null;
+    return <section className="dark:glass glass-light h-[240.9px] sm:h-[248.9px] rounded-lg animate-pulse min-w-0 w-full">
+    </section>;
   }
 
   // graph data

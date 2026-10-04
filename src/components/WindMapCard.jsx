@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 export const WindMapCard = ({ currentLocationData, isLoading }) => {
   // Guard close
   if (isLoading || !currentLocationData) {
-    return null;
+    return <section className="min-w-0 dark:glass glass-light h-[246px] rounded-lg animate-pulse"></section>;
   }
 
   //Bar chart data
