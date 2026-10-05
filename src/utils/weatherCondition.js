@@ -64,7 +64,6 @@ export const getWeatherCondition = (code, isDay = 1) => {
       return {
         main: "Rainy",
         sub: "With moderate rainfall",
-        status: "rain",
         icon: "cloud-showers-heavy.svg",
       };
 
@@ -75,7 +74,6 @@ export const getWeatherCondition = (code, isDay = 1) => {
       return {
         main: "Showers",
         sub: "With passing rain",
-        status: "rain",
         icon: "cloud-showers-heavy.svg",
       };
 
@@ -89,7 +87,6 @@ export const getWeatherCondition = (code, isDay = 1) => {
       return {
         main: "Snowy",
         sub: "With snow flurries",
-        status: "snow",
         icon: "snowflakes.svg",
       };
 
@@ -98,7 +95,6 @@ export const getWeatherCondition = (code, isDay = 1) => {
       return {
         main: "Stormy",
         sub: "With partly cloudy",
-        status: "stormy",
         icon: "thunderstorm.svg",
       };
 
@@ -108,7 +104,6 @@ export const getWeatherCondition = (code, isDay = 1) => {
       return {
         main: "Thunderstorm",
         sub: "With heavy hail",
-        status: "stormy",
         icon: "thunderstorm.svg",
       };
 
@@ -116,7 +111,6 @@ export const getWeatherCondition = (code, isDay = 1) => {
       return {
         main: "Unknown",
         sub: "With variable weather",
-        status: "unknown",
         icon: "sun.svg",
       };
   }
