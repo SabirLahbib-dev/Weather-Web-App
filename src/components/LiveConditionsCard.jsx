@@ -1,11 +1,13 @@
 import { AreaChart, Area, ResponsiveContainer, Tooltip } from "recharts";
 import dayjs from "dayjs";
+import { getDiffrenceLabel, getHumidityLevel } from "../utils/helpers";
 
 export function LiveConditionsCard({ currentLocationData, isLoading }) {
   // Guard close
   if (isLoading || !currentLocationData) {
-    return <section className="dark:glass glass-light h-[240.9px] sm:h-[248.9px] rounded-lg animate-pulse min-w-0 w-full">
-    </section>;
+    return (
+      <section className="dark:glass glass-light h-[240.9px] sm:h-[248.9px] rounded-lg animate-pulse min-w-0 w-full"></section>
+    );
   }
 
   // graph data
@@ -19,19 +21,6 @@ export function LiveConditionsCard({ currentLocationData, isLoading }) {
   const apparentTemp = currentLocationData?.current?.apparent_temperature;
   const actualTemp = currentLocationData?.current?.temperature_2m;
 
-  const getDiffrenceLabel = () => {
-    if (apparentTemp > actualTemp) return "↑ Warmer";
-    if (apparentTemp < actualTemp) return "↓ Cooler";
-    return "Equal";
-  };
-
-  // Dynamic status badge
-  const getHumidityLevel = (humidity) => {
-    if (humidity < 30) return "Dry";
-    if (humidity >= 30 && humidity <= 60) return "Moderate";
-    return "Humid";
-  };
-
   return (
     <section className="dark:glass glass-light min-w-0 w-full rounded-lg p-4 sm:p-5 flex flex-col gap-4">
       {/* Header Info */}
@@ -43,7 +32,7 @@ export function LiveConditionsCard({ currentLocationData, isLoading }) {
           <p className="text-xl font-bold text-slate-800 dark:text-white mt-0.5">
             {Math.round(currentLocationData?.current?.apparent_temperature)}°{" "}
             <span className="text-xs font-normal text-emerald-500">
-              {getDiffrenceLabel()}
+              {getDiffrenceLabel(apparentTemp, actualTemp)}
             </span>
           </p>
         </div>
