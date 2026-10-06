@@ -54,7 +54,10 @@ export const Header = ({ setLocation, location, currentLocationData }) => {
             className="shrink-0 dark:invert-0 invert transition-all"
           />
           <div className="min-w-0">
-            <p className="truncate dark:text-white font-semibold text-black text-[clamp(14px,2vw,20px)]">
+            <p
+              className="truncate dark:text-white font-semibold text-black text-[clamp(14px,2vw,20px)]"
+              data-testid="location-name"
+            >
               {location.name}{" "}
               {location?.admin1
                 ? ` • ${location.admin1}`
