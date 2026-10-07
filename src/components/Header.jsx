@@ -117,7 +117,8 @@ export const Header = ({ setLocation, location, currentLocationData }) => {
             />
             <input
               type="text"
-              name="countries"
+              name="search-input"
+              data-testid="search-input"
               value={search}
               onChange={(e) => {
                 setSearch(e.target.value);
@@ -142,11 +143,12 @@ export const Header = ({ setLocation, location, currentLocationData }) => {
 
           {/* Search Dropdown Results */}
           {suggestions.results ? (
-            <div className="dark:glass glass-light w-[90%] max-w-[700px] rounded-b-lg border border-t-1 border-gray-400/50 cursor-pointer max-h-60 overflow-y-auto scrollbar-none sm:w-[80%] dark:bg-black/30">
+            <div className="dark:glass glass-light w-[90%] max-w-[700px] rounded-b-lg border border-t-1 border-gray-400/50 cursor-pointer max-h-60 overflow-y-auto scrollbar-none sm:w-[80%] dark:bg-black/30" data-testid="search-dropdown">
               {suggestions.results.map((sug) => {
                 return (
                   <div
                     key={sug.id}
+                    data-testid="search-dropdown-item"
                     onClick={() => {
                       setLocation(sug);
                       setSearch("");

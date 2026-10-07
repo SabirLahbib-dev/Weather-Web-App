@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import App from "../App";
 
-describe("LocalStorage Location Persistence", () => {
+describe("Test suite: LocalStorage Location Persistence", () => {
   beforeEach(() => {
     vi.restoreAllMocks(); // Restore all mocks before each test
     localStorage.clear();
