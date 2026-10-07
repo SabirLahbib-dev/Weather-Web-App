@@ -3,7 +3,7 @@ import { getWeatherCondition } from "../utils/weatherCondition";
 export const HeroWeatherCard = ({ currentLocationData, isLoading }) => {
   if (isLoading || !currentLocationData) {
     return (
-      <section className="dark:glass glass-light rounded-lg h-[217.6px] animate-pulse"></section>
+      <section className="dark:glass glass-light rounded-lg h-[217.6px] animate-pulse" data-testid="heroWeather-skeleton"></section>
     );
   }
 
@@ -14,7 +14,7 @@ export const HeroWeatherCard = ({ currentLocationData, isLoading }) => {
   );
 
   return (
-    <section className="dark:glass glass-light rounded-lg p-4 sm:p-6">
+    <section className="dark:glass glass-light rounded-lg p-4 sm:p-6" data-testid="hero-card">
       <h1 className=" text-5xl sm:text-7xl">
         {Math.round(currentLocationData.current.temperature_2m)}°
       </h1>

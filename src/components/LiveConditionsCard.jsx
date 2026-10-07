@@ -6,7 +6,7 @@ export function LiveConditionsCard({ currentLocationData, isLoading }) {
   // Guard close
   if (isLoading || !currentLocationData) {
     return (
-      <section className="dark:glass glass-light h-[240.9px] sm:h-[248.9px] rounded-lg animate-pulse min-w-0 w-full"></section>
+      <section className="dark:glass glass-light h-[240.9px] sm:h-[248.9px] rounded-lg animate-pulse min-w-0 w-full" data-testid="liveConditionCard-skeleton"></section>
     );
   }
 
@@ -22,7 +22,7 @@ export function LiveConditionsCard({ currentLocationData, isLoading }) {
   const actualTemp = currentLocationData?.current?.temperature_2m;
 
   return (
-    <section className="dark:glass glass-light min-w-0 w-full rounded-lg p-4 sm:p-5 flex flex-col gap-4">
+    <section className="dark:glass glass-light min-w-0 w-full rounded-lg p-4 sm:p-5 flex flex-col gap-4" data-testid="live-conditions-card">
       {/* Header Info */}
       <div className="flex justify-between items-center">
         <div>

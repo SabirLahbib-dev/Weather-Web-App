@@ -5,7 +5,10 @@ import { getWeatherCondition } from "../utils/weatherCondition";
 export const WeeklyForecast = ({ currentLocationData, isLoading }) => {
   if (isLoading || !currentLocationData) {
     return (
-      <section className="m-0 grid w-full grid-cols-7 gap-1 sm:gap-2 rounded-lg">
+      <section
+        className="m-0 grid w-full grid-cols-7 gap-1 sm:gap-2 rounded-lg"
+        data-testid="weeklyForecast-skeleton"
+      >
         {[...Array(7)].map((_, i) => (
           <div
             key={i}
@@ -18,7 +21,7 @@ export const WeeklyForecast = ({ currentLocationData, isLoading }) => {
     );
   }
   return (
-    <section className="m-0 w-full min-w-0">
+    <section className="m-0 w-full min-w-0" data-testid="weekly-forecast">
       <div className="grid w-full grid-cols-7 gap-1 sm:gap-2">
         {currentLocationData?.daily?.time.map((day, i) => {
           const icon = getWeatherCondition(

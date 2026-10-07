@@ -10,7 +10,10 @@ export const WindMapCard = ({ currentLocationData, isLoading }) => {
   // Guard close
   if (isLoading || !currentLocationData) {
     return (
-      <section className="min-w-0 dark:glass glass-light h-[246px] rounded-lg animate-pulse"></section>
+      <section
+        className="min-w-0 dark:glass glass-light h-[246px] rounded-lg animate-pulse"
+        data-testid="windMapCard-skeleton"
+      ></section>
     );
   }
 
@@ -39,7 +42,7 @@ export const WindMapCard = ({ currentLocationData, isLoading }) => {
   );
 
   return (
-    <section className="dark:glass glass-light h-[246px] w-full rounded-lg flex flex-col gap-1 justify-center p-3 min-w-0">
+    <section className="dark:glass glass-light h-[246px] w-full rounded-lg flex flex-col gap-1 justify-center p-3 min-w-0" data-testid="wind-map-card">
       <div className="flex items-center justify-between min-w-0">
         <div className="min-w-0">
           <p className="text-sm font-medium text-slate-500 dark:text-gray-400">
